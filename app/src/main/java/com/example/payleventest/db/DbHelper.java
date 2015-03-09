@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.payleventest.Constants;
-import com.example.payleventest.model.CategoryTable;
-import com.example.payleventest.model.ProductTable;
+import com.example.payleventest.model.Category;
+import com.example.payleventest.model.Product;
 
 /**
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
@@ -24,8 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         try {
-            CategoryTable.onCreate(database);
-            ProductTable.onCreate(database);
+            Category.onCreate(database);
+            Product.onCreate(database);
         } catch (SQLException e) {
             Log.e(Constants.LOG_TAG, "Can't create database", e);
             throw new RuntimeException(e);
@@ -35,8 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         try {
-            CategoryTable.onUpgrade(database, oldVersion, newVersion);
-            ProductTable.onUpgrade(database, oldVersion, newVersion);
+            Category.onUpgrade(database, oldVersion, newVersion);
+            Product.onUpgrade(database, oldVersion, newVersion);
         } catch (SQLException e) {
             Log.e(Constants.LOG_TAG, "Error deleting database", e);
         }

@@ -1,9 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context=".MainActivity"
-    android:weightSum="3">
+    >
 
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:weightSum="3">
    <fragment
        android:id="@+id/container_categories"
        android:name="com.example.payleventest.fragments.FragmentCategories"
@@ -21,4 +27,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
-</LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:indeterminate="true"/>
+</RelativeLayout>
