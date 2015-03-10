@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
  * @since 09.03.2015
  */
-public class Product extends BaseObject implements Comparable<Product> {
+public class Product extends BaseModelObject implements Comparable<Product> {
     private int price;
 
     public Product(String id, String name, int price) {

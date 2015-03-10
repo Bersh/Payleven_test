@@ -1,5 +1,6 @@
 package com.example.payleventest.loaders;
 
+import android.content.AsyncTaskLoader;
 import android.content.Context;
 
 import com.example.payleventest.model.Category;
@@ -21,19 +22,19 @@ import java.util.TreeSet;
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
  * @since 09.03.2015
  */
-public class CatalogLoader extends BaseLoader<Map<Category, Set<Product>>> {
+public class CatalogLoader extends AsyncTaskLoader<Map<Category, List<Product>>> {
 
     public CatalogLoader(Context context) {
         super(context);
     }
 
     @Override
-    public Map<Category, Set<Product>> loadInBackground() {
-        Map<Category, Set<Product>> result = new TreeMap<>();
+    public Map<Category, List<Product>> loadInBackground() {
+        Map<Category, List<Product>> result = new TreeMap<>();//will be sorted alphabetically
         //First of all assume that categories and products were loaded as described
         //"loading" categories
         List<Category> categoriesList = new ArrayList<>();
-        Set<String> productIds = new TreeSet<String>() {{
+        Set<String> productIds = new TreeSet<String>() {{ //will be sorted alphabetically
             add("productA");
             add("productC");
             add("productE");
@@ -73,7 +74,7 @@ public class CatalogLoader extends BaseLoader<Map<Category, Set<Product>>> {
 
         //Construct catalog map
         for (Category category : categoriesList) {
-            Set<Product> productSet = new TreeSet<>();
+            List<Product> productSet = new ArrayList<>();
             for (String productId : category.getProducts()) {
                 productSet.add(productsMap.get(productId));
             }

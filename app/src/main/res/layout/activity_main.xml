@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/content"
@@ -10,23 +11,25 @@
         android:layout_height="match_parent"
         android:visibility="gone"
         android:weightSum="3">
-   <fragment
-       android:id="@+id/container_categories"
-       android:name="com.example.payleventest.fragments.FragmentCategories"
-       android:layout_width="0dp"
-       android:layout_height="match_parent"
-       android:layout_weight="2"/>
-    <View
-        android:background="@android:color/black"
-        android:layout_width="1dp"
-        android:layout_height="match_parent"/>
 
-    <fragment
-        android:id="@+id/container_basket"
-        android:name="com.example.payleventest.fragments.FragmentBasket"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        <fragment
+            android:id="@+id/fragment_categories"
+            android:name="com.example.payleventest.fragments.FragmentCategories"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black" />
+
+        <fragment
+            android:id="@+id/fragment_basket"
+            android:name="com.example.payleventest.fragments.FragmentBasket"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <ProgressBar
@@ -34,6 +37,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="visible"
-        android:indeterminate="true"/>
+        android:indeterminate="true"
+        android:visibility="visible" />
 </RelativeLayout>

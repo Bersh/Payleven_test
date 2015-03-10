@@ -4,11 +4,11 @@ package com.example.payleventest.model;
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
  * @since 09.03.2015
  */
-public abstract class BaseObject {
+public abstract class BaseModelObject {
     protected String id;
     protected String name;
 
-    protected BaseObject(String id, String name) {
+    protected BaseModelObject(String id, String name) {
         this.id = id;
         this.name = name;
     }
