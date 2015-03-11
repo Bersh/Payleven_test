@@ -28,7 +28,7 @@ public class FragmentBasket extends BaseBasketFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ListView list = (ListView) view.findViewById(R.id.list);
+        ListView list = (ListView) view.findViewById(R.id.basket_list);
         basketAdapter = new BasketAdapter(getActivity(), basketDataHolder.getBasket(), basketDataHolder);
         list.setAdapter(basketAdapter);
     }

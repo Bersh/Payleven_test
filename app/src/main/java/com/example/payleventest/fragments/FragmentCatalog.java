@@ -20,7 +20,7 @@ import java.util.Map;
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
  * @since 09.03.2015
  */
-public class FragmentCategories extends BaseBasketFragment {
+public class FragmentCatalog extends BaseBasketFragment {
     private CatalogAdapter catalogAdapter;
     private ExpandableListView listView;
 
@@ -32,7 +32,7 @@ public class FragmentCategories extends BaseBasketFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView = (ExpandableListView) view.findViewById(R.id.list);
+        listView = (ExpandableListView) view.findViewById(R.id.catalog_list);
     }
 
     public void setCatalogInfo(Map<Category, List<Product>> catalog) {
@@ -43,6 +43,4 @@ public class FragmentCategories extends BaseBasketFragment {
     public void bucketDataRefreshed() {
         catalogAdapter.notifyDataSetChanged();
     }
-
-
 }

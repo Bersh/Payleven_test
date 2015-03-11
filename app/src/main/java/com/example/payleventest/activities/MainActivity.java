@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.payleventest.Constants;
 import com.example.payleventest.R;
 import com.example.payleventest.fragments.FragmentBasket;
-import com.example.payleventest.fragments.FragmentCategories;
+import com.example.payleventest.fragments.FragmentCatalog;
 import com.example.payleventest.loaders.CatalogLoader;
 import com.example.payleventest.model.Category;
 import com.example.payleventest.model.Product;
@@ -38,7 +37,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     // Used memory storage as the simplest way
     private Map<Product, Integer> basket = new TreeMap<>(); //product - quantity
     private static final int CATALOG_LOADER_ID = 12345;
-    private FragmentCategories fragmentCategories;
+    private FragmentCatalog fragmentCatalog;
     private FragmentBasket fragmentBasket;
 
     @Override
@@ -48,7 +47,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         progressBar = (ProgressBar) findViewById(R.id.progress);
         content = (LinearLayout) findViewById(R.id.content);
         //fragments are added in layout
-        fragmentCategories = (FragmentCategories) getFragmentManager().findFragmentById(R.id.fragment_categories);
+        fragmentCatalog = (FragmentCatalog) getFragmentManager().findFragmentById(R.id.fragment_categories);
         fragmentBasket = (FragmentBasket) getFragmentManager().findFragmentById(R.id.fragment_basket);
         getLoaderManager().initLoader(CATALOG_LOADER_ID, null, this).forceLoad();
     }
@@ -74,7 +73,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<Map<Category, List<Product>>> loader, Map<Category, List<Product>> data) {
         catalog = data;
-        fragmentCategories.setCatalogInfo(catalog);
+        fragmentCatalog.setCatalogInfo(catalog);
         progressBar.setVisibility(View.GONE);
         content.setVisibility(View.VISIBLE);
     }
@@ -93,7 +92,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
             basket.put(product, 1);
         }
         fragmentBasket.setBasket(basket);
-        fragmentCategories.bucketDataRefreshed();
+        fragmentCatalog.bucketDataRefreshed();
     }
 
     @Override
@@ -106,7 +105,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
                 basket.remove(product);
             }
             fragmentBasket.setBasket(basket);
-            fragmentCategories.bucketDataRefreshed();
+            fragmentCatalog.bucketDataRefreshed();
         }
     }
 
@@ -114,5 +113,9 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     @NonNull
     public Map<Product, Integer> getBasket() {
         return basket;
+    }
+
+    public Map<Category, List<Product>> getCatalog() {
+        return catalog;
     }
 }
