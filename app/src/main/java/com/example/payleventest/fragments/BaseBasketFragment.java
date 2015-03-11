@@ -9,6 +9,7 @@ import com.example.payleventest.activities.BasketDataHolder;
 
 /**
  * Base fragment with basket info
+ *
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
  * @since 10.03.2015
  */
