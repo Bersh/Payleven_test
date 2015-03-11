@@ -18,7 +18,6 @@ import java.util.Map;
  * @since 09.03.2015
  */
 public class FragmentBasket extends BaseBasketFragment {
-    private ListView list;
     private BasketAdapter basketAdapter;
 
     @Nullable
@@ -29,7 +28,7 @@ public class FragmentBasket extends BaseBasketFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        list = (ListView) view.findViewById(R.id.list);
+        ListView list = (ListView) view.findViewById(R.id.list);
         basketAdapter = new BasketAdapter(getActivity(), basketDataHolder.getBasket(), basketDataHolder);
         list.setAdapter(basketAdapter);
     }

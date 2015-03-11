@@ -74,7 +74,7 @@ public class BasketAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private class ViewHolder {
+    private static final class ViewHolder {
         TextView txtProductInfo;
     }
 }

@@ -23,9 +23,11 @@ public class CatalogAdapter extends BaseExpandableListAdapter {
     private Map<Category, List<Product>> catalog;
     private List<Category> groups;
     private LayoutInflater inflater;
+    private Context context;
     private BasketDataHolder basketDataHolder;
 
     public CatalogAdapter(Context context, Map<Category, List<Product>> catalog, BasketDataHolder basketDataHolder) {
+        this.context = context;
         this.catalog = catalog;
         this.basketDataHolder = basketDataHolder;
         inflater = LayoutInflater.from(context);
@@ -69,26 +71,39 @@ public class CatalogAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            viewHolder = new ViewHolder();
+            convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
+            viewHolder.txtName = (TextView) convertView.findViewById(android.R.id.text1);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        TextView txtGroupName = (TextView) convertView.findViewById(android.R.id.text1);
         Category category = getGroup(groupPosition);
-        txtGroupName.setText(category.getName());
+        viewHolder.txtName.setPadding(getPixelFromDips(30), 0, 0, 0); //need some space for expand icon
+        viewHolder.txtName.setText(category.getName());
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            viewHolder = new ViewHolder();
+            convertView = inflater.inflate(android.R.layout.simple_list_item_2, null);
+            viewHolder.txtName = (TextView) convertView.findViewById(android.R.id.text1);
+            viewHolder.txtPrice = (TextView) convertView.findViewById(android.R.id.text2);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-        TextView txtProductName = (TextView) convertView.findViewById(android.R.id.text1);
         final Product product = getChild(groupPosition, childPosition);
         Map<Product, Integer> basket = basketDataHolder.getBasket();
         int quantity = basket.containsKey(product) ? basketDataHolder.getBasket().get(product) : 0;
         String productNameWithQty = quantity > 0 ? product.getName() + "  " + quantity : product.getName();
-        txtProductName.setText(productNameWithQty);
+        viewHolder.txtName.setText(productNameWithQty);
+        viewHolder.txtPrice.setText(Integer.toString(product.getPrice()));
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +113,20 @@ public class CatalogAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    public int getPixelFromDips(float dpis) {
+        // Get the screen's density scale
+        final float scale = context.getResources().getDisplayMetrics().density;
+        // Convert the dps to pixels, based on density scale
+        return (int) (dpis * scale + 0.5f);
+    }
+
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
+    }
+
+    private static final class ViewHolder {
+        TextView txtName;
+        TextView txtPrice;
     }
 }

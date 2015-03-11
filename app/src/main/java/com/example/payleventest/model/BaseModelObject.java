@@ -1,6 +1,8 @@
 package com.example.payleventest.model;
 
 /**
+ * Common data fields
+ *
  * @author <a href="mailto:iBersh20@gmail.com">Iliya Bershadskiy</a>
  * @since 09.03.2015
  */

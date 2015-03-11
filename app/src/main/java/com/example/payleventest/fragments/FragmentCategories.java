@@ -43,4 +43,6 @@ public class FragmentCategories extends BaseBasketFragment {
     public void bucketDataRefreshed() {
         catalogAdapter.notifyDataSetChanged();
     }
+
+
 }
