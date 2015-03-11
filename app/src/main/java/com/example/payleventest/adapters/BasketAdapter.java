@@ -21,8 +21,8 @@ import java.util.Map;
 public class BasketAdapter extends BaseAdapter {
     private Map<Product, Integer> basket; //product - quantity
     private List<Product> products;
-    private LayoutInflater inflater;
-    private BasketDataHolder basketDataHolder;
+    private final LayoutInflater inflater;
+    private final BasketDataHolder basketDataHolder;
 
     public BasketAdapter(Context context, Map<Product, Integer> basket, BasketDataHolder basketDataHolder) {
         inflater = LayoutInflater.from(context);

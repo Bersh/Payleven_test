@@ -113,7 +113,7 @@ public class CatalogAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    public int getPixelFromDips(float dpis) {
+    private int getPixelFromDips(float dpis) {
         // Get the screen's density scale
         final float scale = context.getResources().getDisplayMetrics().density;
         // Convert the dps to pixels, based on density scale
